@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,41 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				zep: {
+					blue: {
+						50: '#E6F5FF',
+						100: '#CCEAFF',
+						200: '#99D5FF',
+						300: '#66C0FF',
+						400: '#33ABFF',
+						500: '#0096FF',
+						600: '#0078CC',
+						700: '#005A99',
+						800: '#003C66',
+						900: '#001E33'
+					},
+					green: {
+						50: '#E8F7EF',
+						100: '#D1EFDF',
+						200: '#A3DFBF',
+						300: '#75CF9F',
+						400: '#47BF7F',
+						500: '#1AAF5F',
+						600: '#158C4C',
+						700: '#106939',
+						800: '#0A4626',
+						900: '#052313'
+					},
+					purple: {
+						500: '#8a5cf6',
+						600: '#7c4ddd'
+					}
 				}
+			},
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
+				inter: ['Inter', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +119,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 5s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'hero-pattern': "url('/lovable-uploads/fa008476-bb06-4f1b-ac9c-1887b4b69ef0.png')",
+				'cars-pattern': "url('/lovable-uploads/059f1128-7374-403c-a6ef-a4480a1aabd4.png')",
+				'card-gradient': "linear-gradient(to right, #0096FF, #1AAF5F)"
 			}
 		}
 	},
