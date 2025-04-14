@@ -1,5 +1,5 @@
 
-import { Download } from 'lucide-react';
+import { Download, Smartphone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
@@ -41,17 +41,80 @@ const Hero = () => {
           </div>
 
           <div className="flex justify-center md:justify-end">
-            {/* Replaced floating animation with a simple card design */}
+            {/* Mobile app mockup */}
             <div className="relative">
-              <div className="absolute -inset-1 bg-white/20 blur-md rounded-3xl"></div>
-              <div className="relative bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/30 shadow-xl">
-                <img 
-                  src="/lovable-uploads/059f1128-7374-403c-a6ef-a4480a1aabd4.png" 
-                  alt="Car being washed" 
-                  className="rounded-2xl w-full h-auto object-cover shadow-lg"
-                />
-                <div className="absolute -bottom-4 -right-4 bg-zep-green-500 text-white p-4 rounded-full text-sm font-bold shadow-lg">
-                  95% Water Saved
+              <div className="absolute -inset-1.5 bg-white/20 blur-md rounded-[40px]"></div>
+              <div className="relative bg-black rounded-[35px] border-8 border-black shadow-2xl overflow-hidden w-[280px]">
+                {/* Phone notch */}
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-7 bg-black rounded-b-xl z-10"></div>
+                
+                {/* App Screen */}
+                <div className="relative bg-gradient-to-b from-zep-blue-100 to-zep-blue-50 pt-10 pb-8 px-4 h-[550px] rounded-2xl overflow-hidden">
+                  {/* App Header */}
+                  <div className="flex justify-between items-center mb-6">
+                    <div>
+                      <h3 className="font-bold text-zep-blue-800">ZepWash</h3>
+                      <p className="text-xs text-zep-blue-600">Hello, Alex!</p>
+                    </div>
+                    <div className="h-8 w-8 rounded-full bg-zep-blue-500 flex items-center justify-center">
+                      <Smartphone className="text-white" size={16} />
+                    </div>
+                  </div>
+                  
+                  {/* Main Car Wash Card */}
+                  <div className="bg-white rounded-2xl p-4 shadow-md mb-4">
+                    <h4 className="font-bold text-sm text-zep-blue-800 mb-2">Your next wash</h4>
+                    <div className="bg-zep-blue-50 rounded-xl p-3 mb-3">
+                      <div className="flex justify-between mb-2">
+                        <span className="text-xs font-medium text-zep-blue-600">Premium Wash</span>
+                        <span className="text-xs font-bold text-zep-green-600">Tomorrow</span>
+                      </div>
+                      <div className="h-16 bg-zep-blue-100 rounded-lg mb-2 flex items-center justify-center">
+                        <img 
+                          src="/lovable-uploads/059f1128-7374-403c-a6ef-a4480a1aabd4.png" 
+                          alt="Car wash" 
+                          className="h-full w-full object-cover rounded-lg"
+                        />
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-xs text-zep-blue-600">10:30 AM</span>
+                        <span className="text-xs text-zep-blue-600">30 minutes</span>
+                      </div>
+                    </div>
+                    <button className="w-full bg-zep-green-500 text-white text-xs py-2 rounded-lg font-medium">
+                      Reschedule Wash
+                    </button>
+                  </div>
+                  
+                  {/* Services Buttons */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-white rounded-xl p-3 shadow-sm text-center">
+                      <div className="h-6 w-6 bg-zep-blue-100 rounded-full mx-auto mb-1 flex items-center justify-center">
+                        <span className="text-xs text-zep-blue-600">🚿</span>
+                      </div>
+                      <span className="text-xs font-medium text-zep-blue-800">Quick Wash</span>
+                    </div>
+                    <div className="bg-white rounded-xl p-3 shadow-sm text-center">
+                      <div className="h-6 w-6 bg-zep-green-100 rounded-full mx-auto mb-1 flex items-center justify-center">
+                        <span className="text-xs text-zep-green-600">✨</span>
+                      </div>
+                      <span className="text-xs font-medium text-zep-blue-800">Deep Clean</span>
+                    </div>
+                  </div>
+                  
+                  {/* Water Saved Indicator */}
+                  <div className="bg-white rounded-xl p-3 shadow-sm">
+                    <div className="flex justify-between items-center mb-1">
+                      <h4 className="text-xs font-bold text-zep-blue-800">Water Saved</h4>
+                      <span className="text-xs font-bold text-zep-green-600">95%</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-zep-green-500 rounded-full" style={{ width: '95%' }}></div>
+                    </div>
+                  </div>
+
+                  {/* Home Indicator */}
+                  <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-black rounded-full opacity-20"></div>
                 </div>
               </div>
             </div>
