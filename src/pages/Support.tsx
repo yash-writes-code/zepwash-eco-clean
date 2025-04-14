@@ -15,6 +15,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import FaqAccordion from '@/components/FaqAccordion';
 
 const faqItems = [
   {
@@ -40,6 +41,7 @@ const faqItems = [
 ];
 
 const Support = () => {
+
   const [contactForm, setContactForm] = useState({
     name: '',
     email: '',
@@ -47,6 +49,8 @@ const Support = () => {
     subject: '',
     message: ''
   });
+
+  
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
 
@@ -74,9 +78,9 @@ const Support = () => {
     <>
       <Navbar />
       
-      <div className="pt-16 pb-8 bg-gradient-to-r from-zep-blue-500 to-zep-green-500 text-white">
+      <div className="pt-16 pb-8 bg-gradient-to-r from-zep-blue-500 to-zep-green-800 text-white">
         <div className="container max-w-7xl mx-auto px-4 md:px-6 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">Customer Support</h1>
+          <h1 className="text-3xl md:text-5xl font-bold b-4">Customer Support</h1>
           <p className="text-xl opacity-90 max-w-2xl mx-auto">
             We're here to help. Get in touch with our team for any questions or assistance.
           </p>
@@ -283,28 +287,13 @@ const Support = () => {
           </div>
           
           <div className="max-w-3xl mx-auto">
-            <div className="space-y-6">
-              {faqItems.map((item, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-sm p-6">
-                  <div className="flex items-start">
-                    <div className="w-6 h-6 rounded-full bg-zep-blue-100 flex items-center justify-center mr-3 mt-1">
-                      <MessageSquare size={14} className="text-zep-blue-500" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">{item.question}</h3>
-                      <p className="text-gray-600">{item.answer}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
+            <FaqAccordion faqItems={faqItems}/>
             <div className="text-center mt-10">
               <p className="text-gray-600 mb-4">
                 Can't find what you're looking for?
               </p>
               <Button className="btn-primary">
-                Contact Us
+                <span className='p-4 font-semibold'> Contact Us </span>
               </Button>
             </div>
           </div>

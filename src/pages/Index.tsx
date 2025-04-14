@@ -1,10 +1,9 @@
-
-import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Features from '@/components/Features';
 import Services from '@/components/Services';
 import Process from '@/components/Process';
+import HowItWorks from '@/components/HowItWorks';
 import AppDownload from '@/components/AppDownload';
 import Testimonials from '@/components/Testimonials';
 import CtaSection from '@/components/CtaSection';
@@ -16,11 +15,11 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Features />
+      <HowItWorks/>
       <Services />
-      <Process />
-      <AppDownload />
       <Testimonials />
-      <CtaSection />
+      <AppDownload />
+      {/* <CtaSection /> */}
       <Footer />
     </div>
   );

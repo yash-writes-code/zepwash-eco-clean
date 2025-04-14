@@ -1,22 +1,48 @@
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // scrolling down
+        setShowNavbar(false);
+      } else {
+        // scrolling up
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <nav className="bg-white py-4 shadow-sm sticky top-0 z-50">
+    <nav
+      className={`bg-white py-4 shadow-sm sticky top-0 z-50 transition-transform duration-300 ${
+        showNavbar ? 'translate-y-0' : '-translate-y-full'
+      }`}
+    >
       <div className="container max-w-7xl mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold text-zep-blue-500">Zep<span className="text-zep-green-500">Wash</span></span>
+            <span className="text-2xl font-bold text-zep-blue-500">
+              Zep<span className="text-zep-green-500">Wash</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -26,14 +52,6 @@ const Navbar = () => {
               <Link to="/services" className="text-gray-700 hover:text-zep-blue-500 transition-colors">Services</Link>
               <Link to="/support" className="text-gray-700 hover:text-zep-blue-500 transition-colors">Support</Link>
               <Link to="/about" className="text-gray-700 hover:text-zep-blue-500 transition-colors">About</Link>
-            </div>
-            <div className="flex space-x-4">
-              <Link to="/login">
-                <Button variant="outline" className="rounded-full">Login</Button>
-              </Link>
-              <Link to="/signup">
-                <Button className="bg-zep-blue-500 hover:bg-zep-blue-600 rounded-full">Sign Up</Button>
-              </Link>
             </div>
           </div>
 
@@ -53,14 +71,6 @@ const Navbar = () => {
               <Link to="/services" className="text-gray-700 hover:text-zep-blue-500 transition-colors py-2" onClick={toggleMenu}>Services</Link>
               <Link to="/support" className="text-gray-700 hover:text-zep-blue-500 transition-colors py-2" onClick={toggleMenu}>Support</Link>
               <Link to="/about" className="text-gray-700 hover:text-zep-blue-500 transition-colors py-2" onClick={toggleMenu}>About</Link>
-              <div className="flex flex-col space-y-2 pt-2 border-t">
-                <Link to="/login" onClick={toggleMenu}>
-                  <Button variant="outline" className="w-full rounded-full">Login</Button>
-                </Link>
-                <Link to="/signup" onClick={toggleMenu}>
-                  <Button className="w-full bg-zep-blue-500 hover:bg-zep-blue-600 rounded-full">Sign Up</Button>
-                </Link>
-              </div>
             </div>
           </div>
         )}

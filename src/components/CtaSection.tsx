@@ -17,7 +17,7 @@ const CtaSection = () => {
               Download App
             </Button>
             <Link to="/signup">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
+              <Button size="lg" variant="outline" className="border-white text-zep-blue-700 hover:bg-white/10 px-8 py-6 text-lg">
                 Sign Up Now
               </Button>
             </Link>

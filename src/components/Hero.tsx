@@ -27,7 +27,7 @@ const Hero = () => {
                 Download App
               </Button>
               <Link to="/services">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 rounded-full py-6 font-semibold w-full sm:w-auto flex justify-center text-base">
+                <Button variant="outline" className="border-white text-zep-blue-700 hover:bg-white/10 rounded-full py-6 w-full sm:w-auto flex justify-center text-base">
                   Our Services
                 </Button>
               </Link>

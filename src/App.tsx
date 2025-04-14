@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Support from "./pages/Support";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+      <ScrollToTop/>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
