@@ -20,7 +20,7 @@ const ServicesPage = () => {
       </div>
       
       <Services />
-      <Process />
+      {/* <Process /> */}
       <CtaSection />
       
       <Footer />

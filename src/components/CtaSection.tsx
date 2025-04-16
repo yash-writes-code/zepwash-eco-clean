@@ -16,11 +16,7 @@ const CtaSection = () => {
             <Button size="lg" className="bg-white text-zep-blue-600 hover:bg-gray-100 px-8 py-6 text-lg">
               Download App
             </Button>
-            <Link to="/signup">
-              <Button size="lg" variant="outline" className="border-white text-zep-blue-700 hover:bg-white/10 px-8 py-6 text-lg">
-                Sign Up Now
-              </Button>
-            </Link>
+            
           </div>
           
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
