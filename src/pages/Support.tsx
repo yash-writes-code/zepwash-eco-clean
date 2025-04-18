@@ -9,7 +9,8 @@ import {
   Headphones, 
   Mail, 
   Phone, 
-  User 
+  User ,
+  XCircle
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
@@ -54,7 +55,7 @@ const Support = () => {
     console.log(import.meta.env.VITE_BASE_URL);
     
   },[])
-  const [submitted, setSubmitted] = useState(false);
+  const [submission, setSubmission] = useState("none");
   const { toast } = useToast();
 
   const handleChange = (e) => {
@@ -85,7 +86,7 @@ const Support = () => {
 
 
     if(res.status==200){
-      setSubmitted(true);
+      setSubmission("success");
       toast({
         title: "Support Request Sent",
         description: "We'll get back to you within 24 hours.",
@@ -94,7 +95,7 @@ const Support = () => {
     
   }
    catch(e){ 
-    setSubmitted(false);
+    setSubmission("error");
     toast({
       title: "Couldn't send support request",
       description: "Please Try After Some Time",
@@ -203,7 +204,7 @@ const Support = () => {
       <section className="py-16 bg-gray-50">
         <div className="container max-w-3xl mx-auto px-4 md:px-6">
           <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
-          {!submitted ? (
+          {submission == "none" && (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -263,7 +264,7 @@ const Support = () => {
                     placeholder="+91 98765 43210"
                     value={contactForm.phone}
                     onChange={handleChange}
-                    required
+                   
                   />
                 </div>
               </div>
@@ -287,7 +288,9 @@ const Support = () => {
                 Send Message
               </Button>
             </form>
-          ) : (
+          )}
+          
+          {submission == "success" && (
             <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
                 <CheckCircle size={32} className="text-green-500" />
@@ -296,10 +299,25 @@ const Support = () => {
               <p className="text-gray-600 mb-6">
                 We've received your message and will get back to you within 24 hours.
               </p>
-              <Button onClick={() => setSubmitted(false)} variant="outline">
+              <Button onClick={() => setSubmission("none")} variant="outline">
                 Send Another Message
               </Button>
             </div>
+          )}
+
+          {submission == "error" && (
+            <div className="bg-red-50 border border-red-200 rounded-xl p-8 text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+              <XCircle size={32} className="text-red-500" />
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Oops! Something went wrong</h3>
+            <p className="text-gray-600 mb-6">
+              We couldn't process your request. Please try again later.
+            </p>
+            <Button onClick={() => setSubmission("none")} variant="outline">
+              Try Again
+            </Button>
+          </div>
           )}
         </div>
       </section>
