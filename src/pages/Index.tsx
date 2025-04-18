@@ -19,6 +19,7 @@ const Index = () => {
       <Services />
       <Testimonials />
       <AppDownload />
+      
       {/* <CtaSection /> */}
       <Footer />
     </div>

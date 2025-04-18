@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import axios from "axios";
 import { 
   Car, 
   CheckCircle, 
@@ -14,6 +15,8 @@ import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FaqAccordion from '@/components/FaqAccordion';
+import { useEffect } from 'react';
+
 
 const faqItems = [
   {
@@ -43,10 +46,14 @@ const Support = () => {
     name: '',
     email: '',
     phone: '',
-    subject: '',
     message: ''
   });
+  
 
+  useEffect(()=>{
+    console.log(import.meta.env.VITE_BASE_URL);
+    
+  },[])
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
 
@@ -58,15 +65,42 @@ const Support = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e:FormEvent) => {
     e.preventDefault();
-    setTimeout(() => {
+    
+    if(!contactForm.name || !contactForm.email || !contactForm.message){
+      console.log("feilds missing");
+      
+      return;
+    }
+    try{
+   
+      
+    const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/support`,{
+      name:contactForm.name,
+      email: contactForm.email,
+      phone: contactForm.phone,
+      message:contactForm.message
+    });
+
+
+    if(res.status==200){
       setSubmitted(true);
       toast({
         title: "Support Request Sent",
         description: "We'll get back to you within 24 hours.",
       });
-    }, 1000);
+    }
+    
+  }
+   catch(e){ 
+    setSubmitted(false);
+    toast({
+      title: "Couldn't send support request",
+      description: "Please Try After Some Time",
+    });
+  }
+    ;
   };
 
   return (
@@ -233,25 +267,7 @@ const Support = () => {
                   />
                 </div>
               </div>
-              <div className="space-y-2">
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
-                  Subject
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-zep-blue-300 focus:ring focus:ring-zep-blue-200 focus:ring-opacity-50"
-                  value={contactForm.subject}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Select a topic</option>
-                  <option value="service">Service Issue</option>
-                  <option value="billing">Billing Question</option>
-                  <option value="feedback">Feedback</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
+             
               <div className="space-y-2">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700">
                   Message
